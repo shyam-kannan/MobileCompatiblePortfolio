@@ -1,0 +1,701 @@
+:root {
+  --bg-color-light: #ffffff;
+  --bg-color-dark: #000000;
+  --page-bg-color-light: #ffffff;
+  --page-bg-color-dark: #1a1a1a;
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
+  --hover-color: #00cc77;
+  --icon-light-color: #000000;
+  --icon-dark-color: #ffffff;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* General body styling */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+body.dark-mode {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* Page Container */
+.page-container {
+  background-color: var(--page-bg-color-light);
+  padding: 60px; /* Adjusted padding */
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.1s ease, color 0.1s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh; /* Ensures full page height */
+}
+
+body.dark-mode .page-container {
+  background-color: var(--page-bg-color-dark);
+}
+
+/* Light/Dark Mode Button */
+#theme-toggle {
+  font-size: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Default border color */
+  background-color: #fff; /* Light mode default background */
+  color: #00cc77; /* Icon color in light mode */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+  position: absolute; /* Absolute positioning */
+  left: -240px; /* Adjust this value to move it further left */
+  top: 75%; /* Vertically center within nav bar */
+  transform: translateY(-50%); /* Center the button vertically */
+}
+
+body.dark-mode #theme-toggle {
+  background-color: #1a1a1a; /* Dark mode background */
+  color: #ccc; /* Icon color in dark mode */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Dark mode border */
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1); /* Light shadow for dark mode */
+}
+
+/* Hover Effect for Toggle Button */
+#theme-toggle:hover {
+  background-color: #f0f0f0; /* Slight change for hover in light mode */
+  box-shadow: 0px 6px 20px rgba(0, 255, 136, 0.3); /* Hover shadow */
+}
+
+body.dark-mode #theme-toggle:hover {
+  background-color: #333; /* Slight change for hover in dark mode */
+  box-shadow: 0px 6px 20px rgba(255, 255, 255, 0.2); /* Hover shadow for dark mode */
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Relative positioning for absolute elements inside */
+  width: 100%;
+  padding-top: 60px;
+  z-index: 999;
+  background-color: var(--page-bg-color-light);
+  transition: background-color 0.1s ease;
+  
+}
+
+body.dark-mode .nav-container {
+  background-color: var(--page-bg-color-dark);
+}
+
+/* Tab Navigation */
+.tab-navigation {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  background-color: var(--page-bg-color-light);
+  padding: 10px 30px;
+  border-radius: 20px;
+
+  /* Adding a border and shadow */
+  border: 2px solid rgba(0, 0, 0, 0.2); /* Light mode border */
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow for emphasis */
+  transition: background-color 0.1s ease, box-shadow 0.1s ease, border 0.1s ease;
+}
+
+body.dark-mode .tab-navigation {
+  background-color: var(--page-bg-color-dark);
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Dark mode border */
+  box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.15); /* Stronger shadow in dark mode */
+}
+
+/* Tab Links */
+.tab-navigation .tab {
+  text-decoration: none;
+  color: var(--text-color-light);
+  padding: 10px 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
+
+body.dark-mode .tab-navigation .tab {
+  color: var(--text-color-dark);
+}
+
+.tab-navigation .tab:hover {
+  background-color: transparent;
+  color: var(--hover-color); /* Only change the text color */
+}
+
+body.dark-mode .tab-navigation .tab:hover {
+  color: var(--hover-color); /* Only change the text color */
+  background-color: transparent;
+}
+
+.tab-navigation .tab.active {
+  color: var(--hover-color); /* Only change the text color */
+  background-color: transparent;
+}
+
+body.dark-mode .tab-navigation .tab.active{
+  color: var(--hover-color); /* Only change the text color */
+  background-color: transparent;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 0; /* Padding */
+  width: 100%;
+  max-width: 1000px;
+  flex-grow: 1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row-reverse; /* This flips the content */
+  justify-content: space-between;
+  gap: 50px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.hero-text {
+  max-width: 450px;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text-color-light);
+  font-weight: 300;
+  padding-left: 60px;
+}
+
+body.dark-mode .hero-text {
+  color: var(--text-color-dark);
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-color-light);
+}
+
+body.dark-mode .hero-text h1 {
+  color: var(--text-color-dark);
+}
+
+.hero-text p {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+/* Image section */
+.hero-image {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: -50px;
+}
+
+.hero-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color-light); /* Default text color */
+  transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+body.dark-mode .social-links a {
+  color: var(--text-color-dark); /* Text color in dark mode */
+}
+
+/* Hover effects for links (consistent across light and dark modes) */
+.social-links a:hover {
+  color: var(--hover-color); /* Green hover effect */
+}
+
+body.dark-mode .social-links a:hover {
+  color: var(--hover-color); /* Text color in dark mode */
+}
+
+/* Image styling without hover effect */
+.social-links a img {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+  filter: grayscale(100%);
+  background-color: #050606;
+  transition: none; /* No transition or hover effect for images */
+}
+
+body.dark-mode .social-links a img {
+  filter: grayscale(100%);
+  background-color: #050606;
+}
+
+/* Remove hover effect from images */
+.social-links a img:hover {
+  filter: grayscale(100%); /* Ensure no hover effect */
+}
+
+
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-line {
+  width: 113.3%;
+  margin-left: -60px;
+  max-width: 1500px;
+  height: 0.1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.footer-content p {
+  font-size: 13px;
+  color: var(--text-color-light);
+}
+
+body.dark-mode .footer-line {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .footer-content p {
+  color: var(--text-color-dark);
+}
+
+/* Buttons and social links */
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.download-cv-btn {
+  background-color: var(--text-color-light);
+  color: var(--text-color-dark);
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.download-cv-btn:hover {
+  background-color: var(--hover-color);
+  color: #fff;
+  box-shadow: 0px 8px 20px rgba(0, 255, 136, 0.4);
+}
+
+body.dark-mode .download-cv-btn {
+  background-color: var(--text-color-dark);
+  color: var(--text-color-light);
+}
+
+/* Typing effect style */
+.typewriter {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-color-light);
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  width: fit-content;
+  text-align: left;
+}
+
+/* Blinking cursor */
+.cursor {
+  border-right: 3px solid var(--text-color-light);
+  animation: blink 1s infinite;
+  display: inline-block;
+}
+
+body.dark-mode .typewriter {
+  color: var(--text-color-dark);
+}
+
+/* Blinking cursor in dark mode */
+body.dark-mode .cursor {
+  border-right: 3px solid var(--text-color-dark);
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Hide the cursor */
+.cursor-hidden {
+  display: none;
+}
+
+body.dark-mode .cursor-hidden {
+  display: none;
+}
+
+
+/* Aesthetics */
+/* Gradient Background for light mode */
+body {
+  background: linear-gradient(120deg, #f0f0f0, #ffffff);
+}
+
+body.dark-mode {
+  background: linear-gradient(120deg, #1a1a1a, #000000);
+}
+
+
+.download-cv-btn:hover {
+  background-color: #00ff88; /* Brighter green on hover */
+  box-shadow: 0px 8px 20px rgba(0, 255, 136, 0.3); /* Stronger shadow */
+}
+
+/* Glowing effect on profile picture */
+.hero-image img {
+  border: 3px solid transparent;
+  box-shadow: 0px 0px 20px rgba(7, 7, 7, 0.3);
+}
+
+.hero-image img:hover {
+  box-shadow: 0px 0px 30px rgba(10, 10, 10, 0.5);
+}
+
+body.dark-mode .hero.hero-image img {
+  border: 3px solid transparent;
+  box-shadow: 0px 0px 20px rgba(255, 251, 251, 0.3);
+}
+
+body.dark-mode .hero-image img:hover {
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
+}
+
+.hero-image img:hover {
+  transform: rotate(5deg); /* Tilts the image slightly */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* MEDIA QUERIES FOR MOBILE */
+@media (max-width: 768px) {
+  /* Remove page-container effect in mobile */
+  .page-container {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #fff !important;
+  }
+
+  /* Body adjustments for mobile view */
+  body {
+    background-color: #fff !important;
+    font-size: 1rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    min-height: 106vh !important;
+    overflow-y: auto !important;
+  }
+
+ /* Navigation container */
+.nav-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0px !important;
+  width: 80% !important;
+  margin: 0 auto !important; /* Ensures the nav container stays centered */
+}
+
+/* Center theme toggle button under nav for mobile */
+.theme-toggle {
+  display: block !important;
+  margin: 20px auto !important;
+  font-size: 1.8rem !important;
+  text-align: center !important;
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+
+/* Tab navigation */
+.tab-navigation {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  width: 80% !important;
+  margin: 0 auto !important; /* Ensures the tab navigation stays centered */
+}
+
+
+   /* Profile image positioned at the top */
+   .hero-image {
+    order: -1 !important; /* Moves the image above the text */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 20px !important; /* Add some space below the image */
+    margin-top: -60px;
+    margin-right: -40px;
+  }
+
+  .profile-img {
+    width: 250px !important;
+    height: 250px !important;
+    border-radius: 50% !important;
+  }
+
+  /* Ensure other elements don't change */
+  .hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  .hero-text h1 {
+    font-size: 1.5rem !important;
+    margin-top: -70px !important;
+    text-align: center !important;
+    margin: 10 auto !important; /* Center horizontally */
+    padding: 0px 0 !important; /* Add padding if needed */
+    width: 100% !important; /* Ensure it takes up full width */
+    margin-left: -30px;
+  }
+
+  .hero-text p {
+    font-size: 1rem !important;
+    text-align: center !important; /* Center text for mobile */
+    line-height: 1.6 !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 5px !important;
+    margin-left: -60px;
+ 
+  }
+
+  .hero-buttons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-top: 10px !important;
+    margin-left: -60px;
+    margin-bottom: 20px;
+  }
+
+  .download-cv-btn {
+    padding: 8px 16px !important;
+    font-size: 0.9rem !important;
+    background-color: #333 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    margin-right: 15px !important;
+  }
+
+  /* Social icons aligned horizontally */
+  .social-links {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  .social-links a img {
+    margin-top: 10px;
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  /* Footer styling */
+  footer {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0px 0 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .footer-line {
+    width: 100% !important;
+    margin: 0 auto !important;
+    border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+  }
+  /* Hide "Follow on" text on mobile */
+  .desktop-only {
+    display: none !important;
+  }
+
+   /* General Dark Mode Styling */
+body.dark-mode {
+    background-color:  #1a1a1a!important; /* Match the background of the nav bar */
+    font-size: 1rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+}
+
+/* Remove the white gap at the top */
+body.dark-mode .page-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background-color:  #1a1a1a !important; /* Ensure the background covers the full page */
+}
+
+/* Footer Styling in Dark Mode */
+body.dark-mode footer {
+    background-color:  #1a1a1a !important; /* Match the background of the page */
+    color: #fff !important; /* Ensure the text is visible */
+    box-shadow: none !important; /* Remove any box shadow */
+}
+
+/* Dark Mode for Download CV Button */
+body.dark-mode .download-cv-btn {
+    background-color:  #1a1a1a !important;
+    color: #fff !important;
+}
+
+.typewriter {
+  font-size: 1.5rem; /* Smaller font size for mobile */
+  text-align: center; /* Center text for mobile */
+  display: inline-block;
+}
+
+.cursor {
+  font-size: 1.5rem; /* Match the size of the text */
+  display: inline-block;
+  color: var(--text-color-light);
+  animation: blink 1s infinite;
+}
+
+body.dark-mode .typewriter {
+  font-size: 1.5rem; /* Adjust for mobile dark mode */
+}
+
+body.dark-mode .cursor {
+  font-size: 1.5rem; /* Match the size of the text in dark mode */
+  color: var(--text-color-dark);
+}
+
+/* Hide the cursor after typing is done */
+.cursor-hidden {
+  display: none;
+}
+
+body.dark-mode .cursor-hidden {
+  display: none;
+}
+
+  /* Apply dark mode styles only for mobile */
+  body.dark-mode .nav-container {
+    background-color: #181818 !important; /* Consistent dark background */
+    box-shadow: none !important; /* Remove extra shadow */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0px !important;
+    width: 80% !important;
+    margin: 0 auto !important; /* Ensures the nav container stays centered */
+  }
+
+  /* Ensure normal tab colors are consistent in mobile dark mode */
+  body.dark-mode .tab-navigation a {
+    background-color: transparent !important; /* Remove the box background */
+    color: #fff !important; /* Text should be white */
+  }
+
+  /* Remove unwanted gradients or shadows */
+  body.dark-mode .nav-container::before,
+  body.dark-mode .nav-container::after {
+    content: none !important;
+  }
+
+    /* Remove the box effect around active tabs */
+    body.dark-mode .tab-navigation a.active {
+      background-color: transparent !important;
+      color: #00ff88 !important; /* Neon green for active tab */
+      border: none !important; /* No border or box */
+    }
+}
+
+/* Styles for desktop, ensure follow text is shown */
+@media (min-width: 769px) {
+  .desktop-only {
+    display: inline-block !important;
+  }
+}
